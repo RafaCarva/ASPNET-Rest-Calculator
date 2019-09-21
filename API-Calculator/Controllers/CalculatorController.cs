@@ -13,13 +13,65 @@ namespace API_Calculator.Controllers
 
 
         // GET api/sum/5/5
-        [HttpGet("{firstNumber}/{secondNumber}")]
+        [HttpGet("sum/{firstNumber}/{secondNumber}")]
         public IActionResult Sum(string firstNumber, string secondNumber)
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
                 var sum = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
                 return Ok(sum.ToString());
+            }
+
+            return BadRequest("Invalid Input");
+        }
+
+        // GET api/subtraction/5/5
+        [HttpGet("subtraction/{firstNumber}/{secondNumber}")]
+        public IActionResult Subtraction(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sub = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
+                return Ok(sub.ToString());
+            }
+
+            return BadRequest("Invalid Input");
+        }
+
+        // GET api/division/10/5
+        [HttpGet("division/{firstNumber}/{secondNumber}")]
+        public IActionResult Division(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var div = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
+                return Ok(div.ToString());
+            }
+
+            return BadRequest("Invalid Input");
+        }
+
+        // GET api/multiplication/10/5
+        [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
+        public IActionResult Multiplication(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var mult = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
+                return Ok(mult.ToString());
+            }
+
+            return BadRequest("Invalid Input");
+        }
+
+        // GET api/square-root/10/5
+        [HttpGet("square-root/{number}")]
+        public IActionResult SquareRoot(string number)
+        {
+            if (IsNumeric(number))
+            {
+                var squareRoot = Math.Sqrt((double)ConvertToDecimal(number));
+                return Ok(squareRoot.ToString());
             }
 
             return BadRequest("Invalid Input");
